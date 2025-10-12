@@ -27,6 +27,11 @@
       @apply text-foreground;
     }
 
+    /* Long-form paragraphs: larger size + relaxed leading for comfort */
+    p.long {
+      @apply text-[17px] leading-[1.8];
+    }
+
     a {
       @apply break-words text-foreground decoration-dashed underline-offset-4 hover:text-accent focus-visible:no-underline;
     }
@@ -89,6 +94,15 @@
     pre {
       @apply focus-visible:border-transparent focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-dashed;
     }
+  }
+
+  /* Optional utilities for selective sans sections */
+  .prose-sans {
+    @apply font-sans tracking-wide leading-8;
+  }
+
+  .prose-long {
+    @apply leading-8;
   }
 
   /* ===== Code Blocks & Syntax Highlighting ===== */
