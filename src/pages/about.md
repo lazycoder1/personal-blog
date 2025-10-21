@@ -3,35 +3,40 @@ layout: ../layouts/AboutLayout.astro
 title: "About"
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Hi, I'm **Gautam Sabhahit** — a product-focused engineer, founder, and former CTO who loves turning complex tech into usable products.
 
-![Astro Paper](public/astropaper-og.jpg)
+I've spent the past 6+ years building and scaling products at the intersection of **AI, Blockchain, and SaaS** — from architecting systems at **Amazon Pay** (BNPL & EMI) to scaling my own **blockchain data analytics startup** to **$400K revenue** before exiting.
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+Today, I'm building tools that make AI more practical and product-ready —  
+like a **multi-tenant RAG knowledge bot** that lets teams chat with 100+ types of documents, and an **AI demo assistant** that explains products interactively using screenshots & GIFs.
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+---
 
-## Features
+## 🎯 What Drives Me
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+I believe great technology isn't about the model — it's about **usability, clarity, and outcomes**.  
+That's what I focus on — designing products that people actually want to use.
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+I write here about:
+- **AI infrastructure and product design**
+- **RAG systems and knowledge automation**
+- **Scaling engineering teams and SaaS architecture**
+- **Lessons from startup building**
 
-and so much more.
+---
 
-## Show your support
+## ⚙️ Experience
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+- **Ex-CTO, Jiffy Labs** – Scaled blockchain analytics SaaS to $400K ARR  
+- **Ex-Amazon Pay Engineer** – Designed EMI & BNPL systems used by millions  
+- **Founder, Convinced AI** – Building Gen-AI products for sales and knowledge automation  
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+---
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+## 💬 Let's Connect
 
-Kyay zuu! 🙏🏼
+I love connecting with founders, builders, and researchers.  
+Whether you're exploring AI, SaaS infra, or blockchain analytics — I'd love to chat.
+
+📧 gautamgsabhahit@gmail.com  
+🐦 [Twitter](https://x.com/gautam_sabhahit) | 💼 [LinkedIn](https://www.linkedin.com/in/gautam-sabhahit-8a7835100/) | 💻 [GitHub](https://github.com/lazycoder1/)
