@@ -1,7 +1,7 @@
 ---
 title: "RAG Through Wonderland — Part 1: Setting Up AliceEval"
 author: Gautam G Sabhahit
-pubDatetime: "2025-11-10T00:00:00Z"
+pubDatetime: 2025-11-10T00:00:00Z
 slug: part-1-rag-through-wonderland
 featured: false
 draft: false
