@@ -9,7 +9,7 @@ tags:
   - RAG
   - evaluation
   - alice-eval
-ogImage: ../../assets/images/posts/rag-through-wonderland/part-1/cover.png
+ogImage: ../../assets/images/posts/alice-in-wonderland/ogImage.png
 description: "Kick off the RAG Through Wonderland series by defining AliceEval and outlining the five-level journey from factual recall to external knowledge synthesis."
 canonicalURL: https://lazybuilds.com/rag-through-wonderland-part-1
 ---
