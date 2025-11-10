@@ -1,5 +1,5 @@
 ---
-title: "RAG Through Wonderland — Part 1: Setting Up AliceEval"
+title: "AliceEval — Part 1: Setting Up AliceEval"
 author: Gautam G Sabhahit
 pubDatetime: 2025-11-10T00:00:00Z
 slug: part-1-rag-through-wonderland
@@ -14,11 +14,9 @@ description: "Kick off the RAG Through Wonderland series by defining AliceEval a
 canonicalURL: https://lazybuilds.com/rag-through-wonderland-part-1
 ---
 
-# 🕳️ AliceEval: Setting Up Wonderland  
-*Part 1 of the “RAG Through Wonderland” Series*
-
 > “Who in the world am I? Ah, that’s the great puzzle.”  
 > — *Alice, Chapter 2*
+*Part 1 of the “RAG Through Wonderland” Series*
 
 ---
 
