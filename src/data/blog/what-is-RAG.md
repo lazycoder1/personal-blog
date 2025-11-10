@@ -14,7 +14,7 @@ tags:
 ogImage: ../../assets/images/posts/what-is-rag/before-rag.png
 # ogImage: "https://example.org/remote-image.png" # remote URL
 description: A practical guide to RAG—what it is, why it matters, benefits, how it works, and trade-offs.
-canonicalURL: https://example.org/my-article-was-already-posted-here
+canonicalURL: https://lazybuilds.com/my-article-was-already-posted-here
 ---
 
 ## Description

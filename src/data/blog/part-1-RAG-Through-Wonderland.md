@@ -1,7 +1,7 @@
 ---
-title: RAG Through Wonderland — Part 1: Setting Up AliceEval
+title: "RAG Through Wonderland — Part 1: Setting Up AliceEval"
 author: Gautam G Sabhahit
-pubDatetime: 2025-11-10T00:00:00Z
+pubDatetime: "2025-11-10T00:00:00Z"
 slug: part-1-rag-through-wonderland
 featured: false
 draft: false
@@ -10,8 +10,8 @@ tags:
   - evaluation
   - alice-eval
 ogImage: ../../assets/images/posts/rag-through-wonderland/part-1/cover.png
-description: Kick off the RAG Through Wonderland series by defining AliceEval and outlining the five-level journey from factual recall to external knowledge synthesis.
-canonicalURL: https://example.org/rag-through-wonderland-part-1
+description: "Kick off the RAG Through Wonderland series by defining AliceEval and outlining the five-level journey from factual recall to external knowledge synthesis."
+canonicalURL: https://lazybuilds.com/rag-through-wonderland-part-1
 ---
 
 # 🕳️ AliceEval: Setting Up Wonderland  
