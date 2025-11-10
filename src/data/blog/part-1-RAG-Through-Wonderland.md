@@ -82,40 +82,63 @@ To progress, the system must adapt: improving retrieval methods, context synthes
 
 ## 🧠 What Each Level Teaches
 
-### 🪞 Level 1: The Mirror of Memory  
-This stage tests whether a RAG can do the simplest task — find and reproduce *exact facts* from a text.  
-Success here isn’t about intelligence; it’s about alignment.  
-If I can’t retrieve “Who is the White Rabbit?”, there’s no point in chasing Wonderland’s deeper mysteries.
+<details open>
+<summary>🪞 <strong>Level 1: The Mirror of Memory</strong></summary>
+
+- **Focus**: Literal comprehension and exact facts  
+- **Tests**: Retrieval accuracy, chunk quality, embedding relevance
+
+This stage tests whether a RAG can do the simplest task — find and reproduce *exact facts* from a text. Success here isn’t about intelligence; it’s about alignment. If I can’t retrieve “Who is the White Rabbit?”, there’s no point in chasing Wonderland’s deeper mysteries.
+
+</details>
 
 ---
 
-### 🌀 Level 2: The Pool of Context  
-Once facts work, context begins.  
-Here I’ll test questions like “Why does Alice cry after shrinking?” — requiring multiple passages and a sense of *story flow*.  
-This is where retrieval becomes narrative comprehension.  
-I expect to experiment with chunk sizes, reranking, and query expansion here.
+<details>
+<summary>🌀 <strong>Level 2: The Pool of Context</strong></summary>
+
+- **Focus**: Local logic and short cause–effect  
+- **Tests**: Multi‑chunk retrieval, contextual linking, coherence
+
+Once facts work, context begins. Here I’ll test questions like “Why does Alice cry after shrinking?” — requiring multiple passages and a sense of *story flow*. This is where retrieval becomes narrative comprehension. I expect to experiment with chunk sizes, reranking, and query expansion here.
+
+</details>
 
 ---
 
-### 🌸 Level 3: The Garden of Meaning  
-At this stage, literal retrieval isn’t enough.  
-The questions become interpretive — “How do Alice’s size changes reflect emotional growth?”  
-This requires summarization, paraphrase understanding, and a touch of symbolic reasoning.  
-I’ll start testing hierarchical retrieval and map-reduce summarization chains.
+<details>
+<summary>🌸 <strong>Level 3: The Garden of Meaning</strong></summary>
+
+- **Focus**: Symbolic and thematic synthesis  
+- **Tests**: Summarization, semantic merging, information hierarchy
+
+At this stage, literal retrieval isn’t enough. The questions become interpretive — “How do Alice’s size changes reflect emotional growth?” This requires summarization, paraphrase understanding, and a touch of symbolic reasoning. I’ll start testing hierarchical retrieval and map‑reduce summarization chains.
+
+</details>
 
 ---
 
-### ♟️ Level 4: The Queen’s Logic  
-Now we step into *graph-level reasoning*.  
-Questions like “How do authority figures in Wonderland shape Alice’s autonomy?” require understanding relationships, not paragraphs.  
-This will push me toward entity extraction, multi-hop reasoning, and possibly graph databases.
+<details>
+<summary>♟️ <strong>Level 4: The Queen’s Logic</strong></summary>
+
+- **Focus**: Multi‑hop and relational reasoning  
+- **Tests**: Entity linking, graph traversal, multi‑step reasoning
+
+Now we step into *graph‑level reasoning*. Questions like “How do authority figures in Wonderland shape Alice’s autonomy?” require understanding relationships, not paragraphs. This will push me toward entity extraction, multi‑hop reasoning, and possibly graph databases.
+
+</details>
 
 ---
 
-### 🔍 Level 5: Through the Looking Glass  
-The final level goes beyond the text — connecting *Alice* to *Carroll* and his world.  
-Questions like “How does Victorian society influence Carroll’s satire?” demand integration with external sources and interpretive reasoning.  
-This is where RAG becomes knowledge orchestration — a bridge between text and context.
+<details>
+<summary>🔍 <strong>Level 5: Through the Looking Glass</strong></summary>
+
+- **Focus**: Cross‑domain synthesis with external knowledge  
+- **Tests**: External corpus retrieval, source routing, interpretive reasoning
+
+The final level goes beyond the text — connecting *Alice* to *Carroll* and his world. Questions like “How does Victorian society influence Carroll’s satire?” demand integration with external sources and interpretive reasoning. This is where RAG becomes knowledge orchestration — a bridge between text and context.
+
+</details>
 
 ---
 
