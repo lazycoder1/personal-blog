@@ -16,8 +16,8 @@ canonicalURL: https://lazybuilds.com/rag-through-wonderland-part-1
 
 > “Who in the world am I? Ah, that’s the great puzzle.”  
 > — *Alice, Chapter 2*
-*Part 1 of the “RAG Through Wonderland” Series*
 
+<!-- *Part 1 of the “RAG Through Wonderland” Series* -->
 ---
 
 ## 🌱 Entering the Rabbit Hole
