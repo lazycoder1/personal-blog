@@ -16,7 +16,6 @@ description: "Building and optimizing a RAG system for Level 1 factual recall—
 canonicalURL: https://lazybuilds.com/rag-through-wonderland-part-2
 ---
 
-# 🕳️ Finding the Rabbit Hole: Level 1 — Factual Recall
 *Part 2 of the "RAG Through Wonderland" Series*
 
 > "Curiouser and curiouser!"  
