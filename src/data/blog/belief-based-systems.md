@@ -97,13 +97,10 @@ But almost every knowledge graph in production today still inherits the document
 
 Six things knowledge graphs typically miss.
 
+**Typical knowledge graph**
+
 ```mermaid
 flowchart TB
-  classDef has fill:#e1f5e1,stroke:#0a0,color:#000
-  classDef miss fill:#ffe4e1,stroke:#b00,color:#000
-  classDef bsys fill:#e6f0ff,stroke:#1f4ed8,color:#000
-  classDef heading fill:#fff,stroke:#444,color:#000
-
   KG["Typical knowledge graph"]:::heading
   KG --> H1["Structured entities"]:::has
   KG --> H2["Relationships, traversal"]:::has
@@ -113,7 +110,12 @@ flowchart TB
   KG --> M4["No approval state"]:::miss
   KG --> M5["No outbound capability"]:::miss
   KG --> M6["Tacit knowledge invisible"]:::miss
+```
 
+**Belief-based system**
+
+```mermaid
+flowchart TB
   BBS["Belief-based system"]:::heading
   BBS --> B1["Structured entities"]:::has
   BBS --> B2["Relationships, traversal"]:::has

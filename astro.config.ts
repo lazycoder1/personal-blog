@@ -3,12 +3,15 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
+import rehypeRaw from "rehype-raw";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
+import { remarkMermaid } from "./src/utils/remarkMermaid";
+import { rehypeMermaidDual } from "./src/utils/rehypeMermaidDual";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -20,10 +23,20 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    remarkPlugins: [
+      remarkMermaid,
+      remarkToc,
+      [remarkCollapse, { test: "Table of contents" }],
+    ],
+    rehypePlugins: [
+      // Parse the raw HTML emitted by remarkMermaid into actual hast
+      // <pre> elements so rehypeMermaidDual can find and replace them.
+      [rehypeRaw, { passThrough: ["mdxJsxFlowElement", "mdxJsxTextElement"] }],
+      rehypeMermaidDual,
+    ],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "min-light", dark: "tokyo-night" },
       defaultColor: false,
       wrap: false,
       transformers: [
