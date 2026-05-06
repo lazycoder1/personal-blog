@@ -341,25 +341,24 @@ interface Target {
   raw: string;
 }
 
-export function rehypeMermaidDual() {
-  return async (tree: Root) => {
-    const targets: Target[] = [];
+async function processTree(tree: Root): Promise<void> {
+  const targets: Target[] = [];
 
-    visit(tree, "element", (node, index, parent) => {
-      if (node.tagName !== "pre" || index == null || !parent) return;
+  visit(tree, "element", (node, index, parent) => {
+    if (node.tagName !== "pre" || index == null || !parent) return;
 
-      const cls = node.properties?.className;
-      const classes = Array.isArray(cls) ? cls : cls ? [String(cls)] : [];
-      if (!classes.includes("mermaid")) return;
+    const cls = node.properties?.className;
+    const classes = Array.isArray(cls) ? cls : cls ? [String(cls)] : [];
+    if (!classes.includes("mermaid")) return;
 
-      targets.push({
-        parent: parent as Element | Root,
-        index,
-        raw: decodeEntities(getInnerText(node)),
-      });
+    targets.push({
+      parent: parent as Element | Root,
+      index,
+      raw: decodeEntities(getInnerText(node)),
     });
+  });
 
-    if (targets.length === 0) return;
+  if (targets.length === 0) return;
 
     const renderer = createMermaidRenderer();
     const lightSources = targets.map(t => normaliseSource(t.raw, lightPalette));
@@ -439,6 +438,25 @@ export function rehypeMermaidDual() {
       const newNodes = fromHtml(html, { fragment: true })
         .children as Element[];
       parent.children.splice(index, 1, ...newNodes);
+    }
+}
+
+export function rehypeMermaidDual() {
+  // Top-level guard: nothing in this plugin should ever take down a
+  // post's content. Worst case Vercel/Netlify can't run Chromium and we
+  // leave the raw <pre class="mermaid"> blocks alone — they'll render as
+  // code blocks in the final HTML, ugly but visible. Astro silently
+  // discards the entire article body if a rehype plugin throws, so this
+  // catch is the difference between "diagrams missing" and "post empty."
+  return async (tree: Root) => {
+    try {
+      await processTree(tree);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.error(
+        "[rehypeMermaidDual] caught fatal error, leaving mermaid blocks as raw:",
+        err,
+      );
     }
   };
 }
