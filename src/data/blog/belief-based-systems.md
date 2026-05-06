@@ -17,7 +17,7 @@ canonicalURL: https://lazybuilds.com/belief-based-systems
 ---
 
 > *"Your AI is better than my best sales reps today. But the customer stories are polluted by what is in our call recordings."*
-> — a founder I work with
+> — every sales AI customer, ever
 
 ---
 
