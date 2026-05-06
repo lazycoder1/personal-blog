@@ -300,7 +300,7 @@ const nextPost =
       figure.setAttribute("tabindex", "0");
       figure.setAttribute("aria-label", "Open diagram in full view");
 
-      const trigger = e => {
+      const trigger = () => {
         const svg = activeSvgFor(figure);
         if (svg) open(svg);
       };
