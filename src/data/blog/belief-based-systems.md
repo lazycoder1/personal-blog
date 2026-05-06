@@ -17,7 +17,7 @@ canonicalURL: https://lazybuilds.com/belief-based-systems
 ---
 
 > *"Your AI is better than my best sales reps today. But the customer stories are polluted by what is in our call recordings."*
-> Ravi Bulusu, founder and CEO, Enmovil
+> — a founder I work with
 
 ---
 
@@ -27,13 +27,13 @@ Before any theory, one real moment from a customer of mine.
 
 A buyer is on a sales call. Tier 1 auto OEM. Procurement-led. They ask the rep, *"which other auto OEMs use you for dispatch planning?"*
 
-The rep, in the heat of the deal, says: *"P&G uses us for dispatch planning."*
+The rep, in the heat of the deal, says: *"Acme uses us for dispatch planning."*
 
 Three things are true about that sentence.
 
-1. P&G is a real customer of theirs.
-2. P&G is not an auto OEM.
-3. P&G uses the platform for **consignment tracking**, not dispatch planning.
+1. Acme is a real customer of theirs.
+2. Acme is not an auto OEM.
+3. Acme uses the platform for **consignment tracking**, not dispatch planning.
 
 The rep just stretched a real customer relationship into a more impressive one in the most consequential moment of the call. The transcript captured the stretched version. If we had taken that transcript, embedded the chunks, and shipped it to an AI sales rep, the *next* prospect would have heard the same sentence back. And the prospect after that. And the AI would have sounded confident every single time.
 
@@ -41,7 +41,7 @@ This is not a bad rep. This is every B2B rep on every important call. And right 
 
 This post is about why I no longer believe it, and what to build instead.
 
-I will use this P&G example as the running thread the whole way through.
+I will use this Acme example as the running thread the whole way through.
 
 ---
 
@@ -65,7 +65,7 @@ flowchart LR
 
   Agent["AI agent<br/>(retrieves + generates)"]:::agent
 
-  Out["'P&G uses us for<br/>dispatch planning.'"]:::bad
+  Out["'Acme uses us for<br/>dispatch planning.'"]:::bad
 
   Calls --> Store
   Docs --> Store
@@ -81,7 +81,7 @@ The architecture has one assumption that breaks the day you ship to a real custo
 
 **The architecture treats every document as if it were true.**
 
-A chunk that says *"P&G uses us for dispatch planning"* and a chunk that says *"P&G uses us for consignment tracking"* are equally retrievable. The model picks whichever ranks higher. The user never sees the disagreement.
+A chunk that says *"Acme uses us for dispatch planning"* and a chunk that says *"Acme uses us for consignment tracking"* are equally retrievable. The model picks whichever ranks higher. The user never sees the disagreement.
 
 This is the architecture under every "RAG over your wiki" pitch. It is the architecture under most enterprise AI tools shipping today. And it has zero protection against the kind of stretched-truth claim that comes out of a real sales call.
 
@@ -127,7 +127,7 @@ flowchart TB
   BBS --> B8["Tacit captured via conversation"]:::bsys
 ```
 
-**1. Provenance is optional and inconsistent.** Wikidata has the right idea (every statement can carry a `reference`). Most enterprise KGs treat sources as a nice-to-have. A node says *"P&G is a customer"*. Where did that come from? Two years of nobody writing source attributes is two years of claims that are technically *in* the graph but cannot be defended outside it.
+**1. Provenance is optional and inconsistent.** Wikidata has the right idea (every statement can carry a `reference`). Most enterprise KGs treat sources as a nice-to-have. A node says *"Acme is a customer"*. Where did that come from? Two years of nobody writing source attributes is two years of claims that are technically *in* the graph but cannot be defended outside it.
 
 **2. No conflict surfacing.** A KG with two contradictory triples will happily return both. The query layer picks one based on aggregation, freshness, or whichever was inserted most recently. There is no alarm, no human-in-the-loop trigger, no surfacing of the disagreement to anyone whose job it is to resolve it.
 
@@ -176,8 +176,8 @@ flowchart LR
 
   subgraph "Claim layer (proposed)"
     direction TB
-    C1["Claim: P&G is a customer<br/>For: consignment tracking<br/>Source: 2024 case study<br/>Author: marketing@<br/>Verified: 2026-03-12"]:::new
-    C2["Claim: P&G uses dispatch planning<br/>Source: rep-on-call, 2026-04-22<br/>Author: ae@<br/>Status: UNVERIFIED"]:::new
+    C1["Claim: Acme is a customer<br/>For: consignment tracking<br/>Source: 2024 case study<br/>Author: marketing@<br/>Verified: 2026-03-12"]:::new
+    C2["Claim: Acme uses dispatch planning<br/>Source: rep-on-call, 2026-04-22<br/>Author: ae@<br/>Status: UNVERIFIED"]:::new
   end
 
   D3 -.extracts.-> C2
@@ -186,7 +186,7 @@ flowchart LR
 
 The point of this diagram is the difference between what the two layers *let you ask*.
 
-You cannot ask the document layer "is P&G a dispatch-planning customer?" and get a clean answer. You can ask "find me chunks about P&G and dispatch planning". You will get back chunks. The chunks may agree. They may not. The system will not tell you they disagree.
+You cannot ask the document layer "is Acme a dispatch-planning customer?" and get a clean answer. You can ask "find me chunks about Acme and dispatch planning". You will get back chunks. The chunks may agree. They may not. The system will not tell you they disagree.
 
 You can ask the claim layer that question. The answer is *"two claims exist. One says yes, one says no. Here are the sources, the authors, the dates, and the verification status of each."*
 
@@ -198,7 +198,7 @@ Once the layer can tell you it disagrees with itself, the rest of the architectu
 
 Step three. What is the actual shape of a claim?
 
-I will use the same P&G example, properly structured, as one record in the system.
+I will use the same Acme example, properly structured, as one record in the system.
 
 ```mermaid
 flowchart TB
@@ -206,12 +206,12 @@ flowchart TB
   classDef heading fill:#1f4ed8,stroke:#1f4ed8,color:#fff
 
   H["Claim record"]:::heading
-  T["text:<br/>'P&G uses us for consignment tracking only.'"]:::field
-  A["author:<br/>Ravi Bulusu (CEO Enmovil)"]:::field
+  T["text:<br/>'Acme uses us for consignment tracking only.'"]:::field
+  A["author:<br/>founder (CEO)"]:::field
   S["source:<br/>2026-04-22 outbound conversation,<br/>via Slack"]:::field
   D["date_observed:<br/>2026-04-22"]:::field
   V["verification_status:<br/>VERIFIED by approver"]:::field
-  Ap["approver:<br/>Vignesh (CSM), 2026-04-22"]:::field
+  Ap["approver:<br/>head of CS, 2026-04-22"]:::field
   C["confidence:<br/>0.95"]:::field
   R["replaces:<br/>claim_id 0x4f2a (UNVERIFIED)"]:::field
   L["last_verified_at:<br/>2026-04-22"]:::field
@@ -229,7 +229,7 @@ flowchart TB
 
 Eight fields. None of them controversial individually. All of them missing in your vector store today.
 
-Look at the `replaces` field. That is how a belief-based system represents history. The earlier "P&G uses us for dispatch planning" claim is not deleted; it is downgraded to UNVERIFIED and its successor is linked. A reader of the system six months from now can see exactly what changed, why, and when.
+Look at the `replaces` field. That is how a belief-based system represents history. The earlier "Acme uses us for dispatch planning" claim is not deleted; it is downgraded to UNVERIFIED and its successor is linked. A reader of the system six months from now can see exactly what changed, why, and when.
 
 Look at the `verification_status` field. It is the difference between the system saying *"a chunk says this"* and the system saying *"someone with the right job has approved this".* These are not the same thing. RAG cannot tell you the second one because it does not store it.
 
@@ -346,8 +346,8 @@ flowchart LR
   classDef out3 fill:#ffe4e1,stroke:#b00,color:#000
   classDef out4 fill:#fff,stroke:#444,color:#000
 
-  Old["Existing claim<br/>P&G: consignment tracking<br/>Verified 2026-03-12"]:::old
-  New["New claim<br/>P&G: dispatch planning<br/>From transcript 2026-04-22"]:::new
+  Old["Existing claim<br/>Acme: consignment tracking<br/>Verified 2026-03-12"]:::old
+  New["New claim<br/>Acme: dispatch planning<br/>From transcript 2026-04-22"]:::new
 
   R{"Reconciliation agent"}:::judge
 
@@ -362,7 +362,7 @@ flowchart LR
 
 The key point is the third path: **conflict**. The new claim says one thing. The old claim says another. The system does not pick. The system surfaces both, with full provenance, and routes the conflict to whichever human owns that domain.
 
-In our P&G example: the new claim *("dispatch planning")* came from a sales call. The old claim *("consignment tracking only")* came from the marketing-approved case study. Reconciliation flags it. Routes to the head of customer success at Enmovil. The owner sees both versions, both sources, three buttons (Approve, Reject, Refine). Most reviews take under 30 seconds.
+In our Acme example: the new claim *("dispatch planning")* came from a sales call. The old claim *("consignment tracking only")* came from the marketing-approved case study. Reconciliation flags it. Routes to the head of customer success. The owner sees both versions, both sources, three buttons (Approve, Reject, Refine). Most reviews take under 30 seconds.
 
 This step alone is what kills 80% of the hallucination failure modes I see in the wild. RAG can be 100% faithful to its sources and still 100% wrong, because the sources disagree and nobody in the chain ever asked which one was true.
 
@@ -385,13 +385,13 @@ sequenceDiagram
   autonumber
   participant Sys as Convinced
   participant Slack as Slack
-  participant Ravi as Ravi (CEO)
+  participant Founder as Founder (CEO)
 
-  Sys->>Slack: open DM to Ravi
-  Sys->>Ravi: "Hey, our website rep just heard a buyer<br/>ask if P&G uses us for dispatch planning.<br/>Wiki says consignment tracking only.<br/>Which is right today?"
-  Note over Ravi: 12 minutes later
-  Ravi->>Sys: "Consignment tracking only.<br/>The dispatch comment was a stretched pitch.<br/>Don't repeat it."
-  Sys->>Sys: write resolved claim<br/>+ approver (Ravi)<br/>+ source (this conversation)
+  Sys->>Slack: open DM to founder
+  Sys->>Founder: "Hey, our website rep just heard a buyer<br/>ask if Acme uses us for dispatch planning.<br/>Wiki says consignment tracking only.<br/>Which is right today?"
+  Note over Founder: 12 minutes later
+  Founder->>Sys: "Consignment tracking only.<br/>The dispatch comment was a stretched pitch.<br/>Don't repeat it."
+  Sys->>Sys: write resolved claim<br/>+ approver (founder)<br/>+ source (this conversation)
   Sys->>Slack: "Got it. Updated the wiki.<br/>Next time the rep stretches,<br/>the AI will course-correct."
 ```
 
@@ -527,7 +527,7 @@ If you read three of those, read Gettier (3 pages, life-changing), the Stanford 
 
 ## 🧪 What I am building with it
 
-I am applying this architecture to one wedge first: technical B2B sales. The product is called Convinced. We are four months in. We have one paying customer (Enmovil, the company in the P&G story above) and one in paid pilot (Bizom, a Series B FMCG retail SaaS company used by 750+ brands across 35+ countries).
+I am applying this architecture to one wedge first: technical B2B sales. The product is called Convinced. We are four months in, with a paying customer and a paid pilot.
 
 The five pieces map directly to what I described in the architecture diagram:
 
@@ -535,7 +535,7 @@ The five pieces map directly to what I described in the architecture diagram:
 - The conflict-detection agent reconciles every new claim against the wiki and surfaces contradictions with full provenance.
 - The human-outbound agent goes to the right guardian on Slack, Teams, email, or voice when documents run out.
 - The belief layer is a knowledge graph indexed around pains, solutions, and customer stories (not features), with full audit trails on every claim.
-- The AI agents read from approved claims and serve them on the website widget, the voice agent, internal sales bots, and a public MCP layer that Enmovil's third-party service vendors consume directly.
+- The AI agents read from approved claims and serve them on the website widget, the voice agent, internal sales bots, and a public MCP layer that the customer's third-party vendors consume directly.
 
 The longer version of the argument lives at [getconvinced.ai/research](https://getconvinced.ai/research). The short version is that **once you stop treating documents as truth, every layer of the AI stack changes shape**.
 
