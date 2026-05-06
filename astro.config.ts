@@ -9,6 +9,7 @@ import {
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
+import { remarkMermaid } from "./src/utils/remarkMermaid";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -20,11 +21,15 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
-    // Mermaid SSR pipeline temporarily disabled — Vercel can't run
-    // Playwright reliably and the failure was nuking entire post bodies.
-    // Mermaid blocks render as code blocks for now; client-side rendering
-    // will be wired up in a follow-up commit.
+    // remarkMermaid converts ```mermaid blocks into raw <pre class="mermaid">
+    // HTML so the source survives to the browser, where mermaidClient.ts
+    // (loaded from PostDetails) renders it client-side. We dropped the SSR
+    // path because Vercel's build env can't launch Playwright/Chromium.
+    remarkPlugins: [
+      remarkMermaid,
+      remarkToc,
+      [remarkCollapse, { test: "Table of contents" }],
+    ],
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "tokyo-night" },
