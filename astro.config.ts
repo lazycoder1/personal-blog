@@ -3,15 +3,12 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
-import rehypeRaw from "rehype-raw";
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
   transformerNotationWordHighlight,
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
-import { remarkMermaid } from "./src/utils/remarkMermaid";
-import { rehypeMermaidDual } from "./src/utils/rehypeMermaidDual";
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -23,17 +20,11 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    remarkPlugins: [
-      remarkMermaid,
-      remarkToc,
-      [remarkCollapse, { test: "Table of contents" }],
-    ],
-    rehypePlugins: [
-      // Parse the raw HTML emitted by remarkMermaid into actual hast
-      // <pre> elements so rehypeMermaidDual can find and replace them.
-      [rehypeRaw, { passThrough: ["mdxJsxFlowElement", "mdxJsxTextElement"] }],
-      rehypeMermaidDual,
-    ],
+    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    // Mermaid SSR pipeline temporarily disabled — Vercel can't run
+    // Playwright reliably and the failure was nuking entire post bodies.
+    // Mermaid blocks render as code blocks for now; client-side rendering
+    // will be wired up in a follow-up commit.
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "tokyo-night" },
