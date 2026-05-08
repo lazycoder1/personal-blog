@@ -246,18 +246,17 @@ The company is **Routely**, a B2B logistics SaaS. The fact under question is whe
 Each step shows what gets claimed, where it gets stored, and what is actually true.
 
 ```mermaid
-flowchart LR
-  M0["Month 0<br/>Truth is clean<br/>SAP S/4HANA supported"]:::good
-  M4["Month 4<br/>First custom build<br/>FreightCo gets a one-off ECC adapter"]:::catch
-  M6["Month 6<br/>Anna joins sales<br/>Notebook says 'we integrate with SAP'"]:::catch
-  M8["Month 8<br/>First deal closes<br/>Customer is on S/4HANA, all is well"]:::catch
-  M11["Month 11<br/>The pattern hardens<br/>3 more deals, all S/4HANA"]:::catch
-  M14["Month 14<br/>Brian joins<br/>Shadows Anna, learns the unqualified pitch"]:::catch
-  M16["Month 16<br/>ECC adapter deprecated<br/>Eng tells CS, does not tell sales"]:::catch
-  M17["Month 17<br/>Brian sells the wrong thing<br/>Globo runs ECC, deal blows up"]:::bad
-  M18["Month 18<br/>Routely launches AI sales rep<br/>Bot enshrines the distorted version"]:::bad
-
-  M0 --> M4 --> M6 --> M8 --> M11 --> M14 --> M16 --> M17 --> M18
+timeline
+  title 18 months of one fact at Routely
+  Month 0  : Truth is clean : SAP S/4HANA supported
+  Month 4  : First custom build : FreightCo gets a one-off ECC adapter
+  Month 6  : Anna joins sales : Notebook says 'we integrate with SAP'
+  Month 8  : First deal closes : Customer is on S/4HANA, all is well
+  Month 11 : The pattern hardens : 3 more deals, all S/4HANA
+  Month 14 : Brian joins : Shadows Anna, learns the unqualified pitch
+  Month 16 : ECC adapter deprecated : Eng tells CS, does not tell sales
+  Month 17 : Brian sells the wrong thing : Globo runs ECC, deal blows up
+  Month 18 : Routely launches AI sales rep : Bot enshrines the distorted version
 ```
 
 **Month 0, founding.** The product integrates with SAP S/4HANA. One PM owns this fact. The marketing site says *"Connects to your SAP"*. The Confluence page says *"SAP S/4HANA: supported"*. Truth is clean.

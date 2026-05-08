@@ -184,6 +184,19 @@
     }
   }
 
+  /* Mermaid timeline draws a vertical dashed line from each period
+     down through its events, ending in an arrowhead pointing into
+     nothing below the last event. The official docs expose no theme
+     option to hide them. The horizontal axis arrow uses the same
+     g.lineWrapper but is solid (no stroke-dasharray attribute), so
+     targeting [stroke-dasharray] removes the orphan connectors only.
+     :is() lets one rule cover both the in-page figure and the
+     lightbox modal (which renders the SVG outside .app-prose). */
+  :is(figure.mermaid-wrap, .mermaid-modal) g.lineWrapper line[stroke-dasharray] {
+    stroke: transparent !important;
+    marker-end: none !important;
+  }
+
   /* ===== Mermaid lightbox modal ===== */
   .mermaid-modal {
     @apply fixed inset-0 z-50 flex items-center justify-center;
