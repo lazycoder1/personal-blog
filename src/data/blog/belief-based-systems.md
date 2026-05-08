@@ -233,7 +233,7 @@ Look at the `replaces` field. That is how a belief-based system represents histo
 
 Look at the `verification_status` field. It is the difference between the system saying *"a chunk says this"* and the system saying *"someone with the right job has approved this".* These are not the same thing. RAG cannot tell you the second one because it does not store it.
 
-This anatomy maps cleanly to a real schema. In my system the entities are called `Fact`, `Claim`, `EntitySource`, `PendingChange`, and `ModerationAction`. The names do not matter. What matters is that **every assertion the AI makes can be traced to a name, a date, and a source**.
+This anatomy maps cleanly to a real schema. The naming is incidental; what matters is that **every assertion the AI makes can be traced to a name, a date, and a source**.
 
 ---
 
@@ -248,15 +248,15 @@ Each step shows what gets claimed, where it gets stored, and what is actually tr
 ```mermaid
 timeline
   title 18 months of one fact at Routely
-  Month 0  : Truth is clean<br/>'SAP S/4HANA: supported'
-  Month 4  : First custom build<br/>FreightCo gets a one-off ECC adapter
-  Month 6  : Anna joins sales<br/>Notebook says 'we integrate with SAP'
-  Month 8  : First deal closes<br/>Customer is on S/4HANA, all is well
-  Month 11 : The pattern hardens<br/>3 more deals, all S/4HANA
-  Month 14 : Brian joins<br/>Shadows Anna, learns the unqualified pitch
-  Month 16 : ECC adapter deprecated<br/>Eng tells CS, does not tell sales
-  Month 17 : Brian sells the wrong thing<br/>Globo runs ECC, deal blows up
-  Month 18 : Routely launches AI sales rep<br/>Bot enshrines the distorted version
+  Month 0  : Truth is clean : SAP S/4HANA supported
+  Month 4  : First custom build : FreightCo gets a one-off ECC adapter
+  Month 6  : Anna joins sales : Notebook says 'we integrate with SAP'
+  Month 8  : First deal closes : Customer is on S/4HANA, all is well
+  Month 11 : The pattern hardens : 3 more deals, all S/4HANA
+  Month 14 : Brian joins : Shadows Anna, learns the unqualified pitch
+  Month 16 : ECC adapter deprecated : Eng tells CS, does not tell sales
+  Month 17 : Brian sells the wrong thing : Globo runs ECC, deal blows up
+  Month 18 : Routely launches AI sales rep : Bot enshrines the distorted version
 ```
 
 **Month 0, founding.** The product integrates with SAP S/4HANA. One PM owns this fact. The marketing site says *"Connects to your SAP"*. The Confluence page says *"SAP S/4HANA: supported"*. Truth is clean.
@@ -405,7 +405,7 @@ Most AI knowledge tools index documents and stop there. They have no opinion abo
 - A privacy and security wrapper so the conversation does not leak.
 - A queue that escalates if the human goes silent.
 
-This is non-trivial infrastructure. We use OpenClaw with NemoClaw on top for privacy and security; the conversation reasoning runs on Claude Sonnet for fast turns and Opus for the harder reconciliations. The exact substrate matters less than the principle: when documents run out, the system goes to humans, not the other way around.
+This is non-trivial infrastructure. We run a two-tier model split (a fast model for routine reconciliations, a stronger one for ambiguous conflicts) with a privacy and security wrapper around the whole thing. The substrate is interchangeable; the principle isn't: when documents run out, the system goes to humans, not the other way around.
 
 ---
 
@@ -580,4 +580,4 @@ Documents are claims. Claims have provenance. Knowledge is what someone with the
 
 I do not know if the broader infrastructure will be called "belief-based systems" or "claim graphs" or something nobody has named yet. I just know the document-as-truth assumption breaks under every AI agent that makes it to production at scale, and the teams that figure out the alternative early are going to ship things the rest cannot.
 
-If you are building in this shape, send me a note. The crowd of people thinking hard about this is still small, and I would rather compare notes one founder at a time than re-derive the same lessons.
+What is in this post is the philosophy. The conflict-resolution heuristics, the human-outbound flow design, and the indexing strategy are why Convinced exists as a product. If you are shipping AI to enterprise and hitting the document-as-truth wall, write me at [ggs@getconvinced.ai](mailto:ggs@getconvinced.ai). I would rather compare notes one founder at a time than re-derive the same lessons.
