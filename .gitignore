@@ -23,8 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Claude Code local settings
-.claude/
+# Claude Code local settings (but track project skills)
+.claude/*
+!.claude/skills/
 
 # pagefind
 
